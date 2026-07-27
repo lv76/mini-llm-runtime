@@ -10,6 +10,9 @@ def test_package_boundaries_are_importable() -> None:
         "mini_llm_runtime.kernels.reference",
         "mini_llm_runtime.kernels.triton",
         "mini_llm_runtime.model",
+        "mini_llm_runtime.model.attention",
+        "mini_llm_runtime.model.rope",
+        "mini_llm_runtime.model.transformer",
         "mini_llm_runtime.runtime",
         "mini_llm_runtime.training",
     )
