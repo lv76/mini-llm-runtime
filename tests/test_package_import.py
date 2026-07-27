@@ -1,0 +1,18 @@
+from importlib import import_module
+
+
+def test_package_boundaries_are_importable() -> None:
+    modules = (
+        "mini_llm_runtime",
+        "mini_llm_runtime.data",
+        "mini_llm_runtime.distributed",
+        "mini_llm_runtime.kernels",
+        "mini_llm_runtime.kernels.reference",
+        "mini_llm_runtime.kernels.triton",
+        "mini_llm_runtime.model",
+        "mini_llm_runtime.runtime",
+        "mini_llm_runtime.training",
+    )
+
+    for module in modules:
+        import_module(module)
