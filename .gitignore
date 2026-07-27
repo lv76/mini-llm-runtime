@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Model / training artifacts
+checkpoints/
+outputs/
+runs/
+wandb/
+
+# Common large model files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
