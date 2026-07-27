@@ -38,3 +38,4 @@ wandb/
 
 # Versioned numerical regression fixtures
 !tests/model/fixtures/model.pt
+!tests/distributed/fixtures/*.pt

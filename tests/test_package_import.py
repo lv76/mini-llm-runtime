@@ -9,6 +9,8 @@ def test_package_boundaries_are_importable() -> None:
         "mini_llm_runtime.data.bpe",
         "mini_llm_runtime.data.tokenizer",
         "mini_llm_runtime.distributed",
+        "mini_llm_runtime.distributed.ddp",
+        "mini_llm_runtime.distributed.sharded_optimizer",
         "mini_llm_runtime.kernels",
         "mini_llm_runtime.kernels.reference",
         "mini_llm_runtime.kernels.triton",
