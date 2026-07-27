@@ -35,3 +35,6 @@ wandb/
 *.pth
 *.ckpt
 *.safetensors
+
+# Versioned numerical regression fixtures
+!tests/model/fixtures/model.pt
