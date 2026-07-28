@@ -29,7 +29,17 @@ def flash_attention(q, k, v, is_causal=False):
     return FlashAttentionFunction.apply(q, k, v, is_causal)
 
 
-def flash_fwd_triton(q, k, v, is_causal):
+def flash_fwd_triton(
+    q,
+    k,
+    v,
+    is_causal=False,
+    *,
+    block_m=16,
+    block_n=64,
+    num_warps=4,
+    num_stages=2,
+):
     
     q = q.contiguous()
     k = k.contiguous()
@@ -39,12 +49,13 @@ def flash_fwd_triton(q, k, v, is_causal):
     o = torch.empty_like(q)
     lse = torch.empty((B, T), device=q.device, dtype=torch.float32)
 
-    BLOCK_M = 16
-    BLOCK_N = 64
+    BLOCK_M = block_m
+    BLOCK_N = block_n
     BLOCK_D = triton.next_power_of_2(D)
 
-    grid = (triton.cdiv(T, BLOCK_M),
-            B,
+    grid = (
+        triton.cdiv(T, BLOCK_M),
+        B,
     )
 
     sm_scale = 1.0 / math.sqrt(D)
@@ -55,9 +66,11 @@ def flash_fwd_triton(q, k, v, is_causal):
         T, D,
         sm_scale,
         is_causal,
-        BLOCK_M = BLOCK_M,
-        BLOCK_N = BLOCK_N,
-        BLOCK_D = BLOCK_D,
+        BLOCK_M=BLOCK_M,
+        BLOCK_N=BLOCK_N,
+        BLOCK_D=BLOCK_D,
+        num_warps=num_warps,
+        num_stages=num_stages,
     )
 
     return o, lse
