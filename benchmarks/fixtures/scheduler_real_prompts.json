@@ -1,0 +1,6 @@
+[
+  "请用一句话介绍你自己。",
+  "Explain in one sentence why the sky appears blue during the day.",
+  "Complete this Python function:\n\ndef fibonacci(n):\n    \"\"\"Return the nth Fibonacci number.\"\"\"\n",
+  "人工智能系统在同时处理多个长短不同的请求时，需要正确管理每个请求的上下文、位置编码和键值缓存。请简要说明为什么这些状态不能在请求之间混用。"
+]

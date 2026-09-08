@@ -1,0 +1,89 @@
+{
+  "args": {
+    "model_config": "checkpoints/Qwen2.5-0.5B/config.json",
+    "prompt_lens": [
+      32,
+      128,
+      512,
+      1024
+    ],
+    "output_lens": [
+      8
+    ],
+    "block_size": 64,
+    "max_num_seqs": 4,
+    "dtype": "bfloat16",
+    "output": "benchmarks/results/kv_cache_memory_qwen25_ragged_bs64.csv"
+  },
+  "layout": {
+    "max_num_seqs": 4,
+    "request_capacity_tokens": [
+      39,
+      135,
+      519,
+      1031
+    ],
+    "selected_capacity_tokens": [
+      1031,
+      519,
+      135,
+      39
+    ],
+    "useful_token_slots": 1724,
+    "paged_blocks": 30,
+    "paged_token_slots": 1920,
+    "dense_token_slots": 4124,
+    "paged_packing_efficiency": 0.8979166666666667,
+    "dense_packing_efficiency": 0.4180407371483996,
+    "paged_saving_vs_dense": 0.5344325897187197
+  },
+  "paged_shape_per_k_or_v": [
+    24,
+    30,
+    64,
+    2,
+    64
+  ],
+  "dense_shape_per_k_or_v": [
+    24,
+    4,
+    1031,
+    2,
+    64
+  ],
+  "paged_measurement": {
+    "allocated_bytes": 25165824,
+    "reserved_bytes": 25165824,
+    "tensor_bytes": 23592960
+  },
+  "dense_measurement": {
+    "allocated_bytes": 50675712,
+    "reserved_bytes": 54525952,
+    "tensor_bytes": 50675712
+  },
+  "result": {
+    "dtype": "bfloat16",
+    "block_size": 64,
+    "max_num_seqs": 4,
+    "num_layers": 24,
+    "num_kv_heads": 2,
+    "head_dim": 64,
+    "bytes_per_kv_token": 12288,
+    "useful_token_slots": 1724,
+    "paged_blocks": 30,
+    "paged_token_slots": 1920,
+    "dense_token_slots": 4124,
+    "paged_packing_efficiency": 0.8979166666666667,
+    "dense_packing_efficiency": 0.4180407371483996,
+    "paged_saving_vs_dense": 0.5344325897187197,
+    "paged_tensor_mib": 22.5,
+    "dense_tensor_mib": 48.328125,
+    "measured_paged_allocated_mib": 24.0,
+    "measured_dense_allocated_mib": 48.328125,
+    "measured_paged_reserved_mib": 24.0,
+    "measured_dense_reserved_mib": 52.0,
+    "measured_allocated_saving_vs_dense": 0.5033947623666344,
+    "measured_reserved_saving_vs_dense": 0.5384615384615384
+  },
+  "baseline_note": "Dense cache uses max_num_seqs rows padded to the largest request capacity. Paged cache holds the largest max_num_seqs requests in whole blocks. Both measurements allocate one K and one V tensor."
+}

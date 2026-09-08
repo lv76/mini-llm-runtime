@@ -1,0 +1,1752 @@
+[
+  {
+    "ttft_mean_ms": 84.73678900008963,
+    "ttft_max_ms": 84.73678900008963,
+    "tpot_mean_ms": 42.16239486692454,
+    "tpot_p95_ms": 45.26792899923748,
+    "e2e_max_ms": 717.1727120039577,
+    "output_tokens_per_second": 89.23931283047314,
+    "request_throughput_per_second": 5.577457051904571,
+    "peak_used_kv_blocks": 10,
+    "total_kv_blocks": 11,
+    "peak_kv_utilization": 0.9090909090909091,
+    "num_iterations": 16,
+    "greedy_match": true,
+    "runtime_match": true,
+    "all_kv_blocks_released": true,
+    "dense_greedy_match": true,
+    "isolated_paged_greedy_match": true,
+    "dense_isolated_greedy_match": true,
+    "actual_token_ids": [
+      [
+        49434,
+        239,
+        101909,
+        104455,
+        110498,
+        3837,
+        73670,
+        99553,
+        100646,
+        27369,
+        33108,
+        100364,
+        20002,
+        107124,
+        3407,
+        99692
+      ],
+      [
+        576,
+        12884,
+        7952,
+        6303,
+        2337,
+        279,
+        1899,
+        1576,
+        432,
+        25963,
+        39020,
+        11,
+        892,
+        374,
+        279,
+        2530
+      ],
+      [
+        262,
+        421,
+        308,
+        621,
+        220,
+        15,
+        510,
+        286,
+        470,
+        220,
+        15,
+        198,
+        262,
+        4409,
+        308,
+        621
+      ],
+      [
+        220,
+        16,
+        13,
+        220,
+        101887,
+        103991,
+        34859,
+        9370,
+        102285,
+        16744,
+        5373,
+        81812,
+        112950,
+        33108,
+        60949,
+        25511
+      ]
+    ],
+    "dense_expected_token_ids": [
+      [
+        49434,
+        239,
+        101909,
+        104455,
+        110498,
+        3837,
+        73670,
+        99553,
+        100646,
+        27369,
+        33108,
+        100364,
+        20002,
+        107124,
+        3407,
+        99692
+      ],
+      [
+        576,
+        12884,
+        7952,
+        6303,
+        2337,
+        279,
+        1899,
+        1576,
+        432,
+        25963,
+        39020,
+        11,
+        892,
+        374,
+        279,
+        2530
+      ],
+      [
+        262,
+        421,
+        308,
+        621,
+        220,
+        15,
+        510,
+        286,
+        470,
+        220,
+        15,
+        198,
+        262,
+        4409,
+        308,
+        621
+      ],
+      [
+        220,
+        16,
+        13,
+        220,
+        101887,
+        103991,
+        34859,
+        9370,
+        102285,
+        16744,
+        5373,
+        81812,
+        112950,
+        33108,
+        60949,
+        25511
+      ]
+    ],
+    "isolated_expected_token_ids": [
+      [
+        49434,
+        239,
+        101909,
+        104455,
+        110498,
+        3837,
+        73670,
+        99553,
+        100646,
+        27369,
+        33108,
+        100364,
+        20002,
+        107124,
+        3407,
+        99692
+      ],
+      [
+        576,
+        12884,
+        7952,
+        6303,
+        2337,
+        279,
+        1899,
+        1576,
+        432,
+        25963,
+        39020,
+        11,
+        892,
+        374,
+        279,
+        2530
+      ],
+      [
+        262,
+        421,
+        308,
+        621,
+        220,
+        15,
+        510,
+        286,
+        470,
+        220,
+        15,
+        198,
+        262,
+        4409,
+        308,
+        621
+      ],
+      [
+        220,
+        16,
+        13,
+        220,
+        101887,
+        103991,
+        34859,
+        9370,
+        102285,
+        16744,
+        5373,
+        81812,
+        112950,
+        33108,
+        60949,
+        25511
+      ]
+    ],
+    "iterations": [
+      {
+        "index": 0,
+        "latency_ms": 84.73605699873588,
+        "num_prefill_requests": 4,
+        "num_decode_requests": 0,
+        "used_kv_blocks_after_update": 7
+      },
+      {
+        "index": 1,
+        "latency_ms": 41.41861199968844,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 7
+      },
+      {
+        "index": 2,
+        "latency_ms": 41.54082899913192,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 7
+      },
+      {
+        "index": 3,
+        "latency_ms": 41.066552001211676,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 8
+      },
+      {
+        "index": 4,
+        "latency_ms": 41.699736000737175,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 8
+      },
+      {
+        "index": 5,
+        "latency_ms": 42.270482999811065,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 8
+      },
+      {
+        "index": 6,
+        "latency_ms": 41.46516800028621,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 8
+      },
+      {
+        "index": 7,
+        "latency_ms": 42.19458500119799,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 9
+      },
+      {
+        "index": 8,
+        "latency_ms": 41.514547001497704,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 9
+      },
+      {
+        "index": 9,
+        "latency_ms": 45.26241600069625,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 9
+      },
+      {
+        "index": 10,
+        "latency_ms": 43.27641599957133,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 9
+      },
+      {
+        "index": 11,
+        "latency_ms": 42.669749000197044,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 10
+      },
+      {
+        "index": 12,
+        "latency_ms": 41.93989099985629,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 10
+      },
+      {
+        "index": 13,
+        "latency_ms": 42.35392500049784,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 10
+      },
+      {
+        "index": 14,
+        "latency_ms": 41.73890899983235,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 10
+      },
+      {
+        "index": 15,
+        "latency_ms": 41.86935899997479,
+        "num_prefill_requests": 0,
+        "num_decode_requests": 4,
+        "used_kv_blocks_after_update": 0
+      }
+    ],
+    "top2_capture_overhead_ms": 23.181861997727538,
+    "dense_top2": [
+      [
+        {
+          "top1_token_id": 49434,
+          "top1_logit": 18.875,
+          "top2_token_id": 220,
+          "top2_logit": 17.625,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 239,
+          "top1_logit": 33.75,
+          "top2_token_id": 103,
+          "top2_logit": 22.5,
+          "top2_margin": 11.25
+        },
+        {
+          "top1_token_id": 101909,
+          "top1_logit": 19.875,
+          "top2_token_id": 20412,
+          "top2_logit": 19.625,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 104455,
+          "top1_logit": 16.125,
+          "top2_token_id": 15469,
+          "top2_logit": 15.8125,
+          "top2_margin": 0.3125
+        },
+        {
+          "top1_token_id": 110498,
+          "top1_logit": 20.125,
+          "top2_token_id": 3837,
+          "top2_logit": 20.0,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 3837,
+          "top1_logit": 22.875,
+          "top2_token_id": 1773,
+          "top2_logit": 18.375,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 73670,
+          "top1_logit": 19.75,
+          "top2_token_id": 100006,
+          "top2_logit": 19.625,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 99553,
+          "top1_logit": 22.0,
+          "top2_token_id": 113445,
+          "top2_logit": 21.75,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 100646,
+          "top1_logit": 21.25,
+          "top2_token_id": 27369,
+          "top2_logit": 20.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 27369,
+          "top1_logit": 23.375,
+          "top2_token_id": 99200,
+          "top2_logit": 21.25,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 26.125,
+          "top2_token_id": 5373,
+          "top2_logit": 24.5,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 100364,
+          "top1_logit": 24.375,
+          "top2_token_id": 101898,
+          "top2_logit": 22.0,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 20002,
+          "top1_logit": 22.75,
+          "top2_token_id": 3407,
+          "top2_logit": 22.125,
+          "top2_margin": 0.625
+        },
+        {
+          "top1_token_id": 107124,
+          "top1_logit": 25.0,
+          "top2_token_id": 60548,
+          "top2_logit": 22.625,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 3407,
+          "top1_logit": 25.75,
+          "top2_token_id": 1773,
+          "top2_logit": 25.625,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 99692,
+          "top1_logit": 18.0,
+          "top2_token_id": 104169,
+          "top2_logit": 17.25,
+          "top2_margin": 0.75
+        }
+      ],
+      [
+        {
+          "top1_token_id": 576,
+          "top1_logit": 18.625,
+          "top2_token_id": 362,
+          "top2_logit": 15.3125,
+          "top2_margin": 3.3125
+        },
+        {
+          "top1_token_id": 12884,
+          "top1_logit": 20.25,
+          "top2_token_id": 6303,
+          "top2_logit": 17.75,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 7952,
+          "top1_logit": 24.25,
+          "top2_token_id": 374,
+          "top2_logit": 19.875,
+          "top2_margin": 4.375
+        },
+        {
+          "top1_token_id": 6303,
+          "top1_logit": 25.375,
+          "top2_token_id": 311,
+          "top2_logit": 19.625,
+          "top2_margin": 5.75
+        },
+        {
+          "top1_token_id": 2337,
+          "top1_logit": 25.375,
+          "top2_token_id": 1576,
+          "top2_logit": 23.25,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 26.375,
+          "top2_token_id": 52021,
+          "top2_logit": 21.5,
+          "top2_margin": 4.875
+        },
+        {
+          "top1_token_id": 1899,
+          "top1_logit": 27.25,
+          "top2_token_id": 52021,
+          "top2_logit": 18.875,
+          "top2_margin": 8.375
+        },
+        {
+          "top1_token_id": 1576,
+          "top1_logit": 26.0,
+          "top2_token_id": 4152,
+          "top2_logit": 25.5,
+          "top2_margin": 0.5
+        },
+        {
+          "top1_token_id": 432,
+          "top1_logit": 19.625,
+          "top2_token_id": 315,
+          "top2_logit": 19.375,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 25963,
+          "top1_logit": 23.625,
+          "top2_token_id": 374,
+          "top2_logit": 23.25,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 39020,
+          "top1_logit": 20.375,
+          "top2_token_id": 279,
+          "top2_logit": 19.5,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 11,
+          "top1_logit": 20.625,
+          "top2_token_id": 323,
+          "top2_logit": 19.625,
+          "top2_margin": 1.0
+        },
+        {
+          "top1_token_id": 892,
+          "top1_logit": 21.375,
+          "top2_token_id": 323,
+          "top2_logit": 19.75,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 374,
+          "top1_logit": 20.125,
+          "top2_token_id": 5610,
+          "top2_logit": 19.75,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 19.875,
+          "top2_token_id": 6303,
+          "top2_logit": 19.875,
+          "top2_margin": 0.0
+        },
+        {
+          "top1_token_id": 2530,
+          "top1_logit": 19.125,
+          "top2_token_id": 6028,
+          "top2_logit": 18.625,
+          "top2_margin": 0.5
+        }
+      ],
+      [
+        {
+          "top1_token_id": 262,
+          "top1_logit": 22.0,
+          "top2_token_id": 750,
+          "top2_logit": 19.5,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 421,
+          "top1_logit": 21.125,
+          "top2_token_id": 671,
+          "top2_logit": 21.0,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 24.25,
+          "top2_token_id": 537,
+          "top2_logit": 19.625,
+          "top2_margin": 4.625
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 23.5,
+          "top2_token_id": 2651,
+          "top2_logit": 23.125,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 25.875,
+          "top2_token_id": 15,
+          "top2_logit": 17.75,
+          "top2_margin": 8.125
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.75,
+          "top2_token_id": 16,
+          "top2_logit": 26.0,
+          "top2_margin": 1.75
+        },
+        {
+          "top1_token_id": 510,
+          "top1_logit": 24.0,
+          "top2_token_id": 476,
+          "top2_logit": 22.125,
+          "top2_margin": 1.875
+        },
+        {
+          "top1_token_id": 286,
+          "top1_logit": 26.875,
+          "top2_token_id": 414,
+          "top2_logit": 21.0,
+          "top2_margin": 5.875
+        },
+        {
+          "top1_token_id": 470,
+          "top1_logit": 25.625,
+          "top2_token_id": 671,
+          "top2_logit": 19.75,
+          "top2_margin": 5.875
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 24.375,
+          "top2_token_id": 2240,
+          "top2_logit": 20.625,
+          "top2_margin": 3.75
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.875,
+          "top2_token_id": 16,
+          "top2_logit": 24.0,
+          "top2_margin": 3.875
+        },
+        {
+          "top1_token_id": 198,
+          "top1_logit": 24.25,
+          "top2_token_id": 271,
+          "top2_logit": 19.0,
+          "top2_margin": 5.25
+        },
+        {
+          "top1_token_id": 262,
+          "top1_logit": 27.0,
+          "top2_token_id": 286,
+          "top2_logit": 18.5,
+          "top2_margin": 8.5
+        },
+        {
+          "top1_token_id": 4409,
+          "top1_logit": 25.0,
+          "top2_token_id": 421,
+          "top2_logit": 22.875,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 26.75,
+          "top2_token_id": 220,
+          "top2_logit": 19.375,
+          "top2_margin": 7.375
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 25.375,
+          "top2_token_id": 2651,
+          "top2_logit": 20.75,
+          "top2_margin": 4.625
+        }
+      ],
+      [
+        {
+          "top1_token_id": 220,
+          "top1_logit": 15.6875,
+          "top2_token_id": 73562,
+          "top2_logit": 15.625,
+          "top2_margin": 0.0625
+        },
+        {
+          "top1_token_id": 16,
+          "top1_logit": 20.625,
+          "top2_token_id": 104455,
+          "top2_logit": 19.375,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 13,
+          "top1_logit": 19.25,
+          "top2_token_id": 8,
+          "top2_logit": 17.25,
+          "top2_margin": 2.0
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 16.25,
+          "top2_token_id": 73562,
+          "top2_logit": 15.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 101887,
+          "top1_logit": 18.75,
+          "top2_token_id": 46944,
+          "top2_logit": 18.0,
+          "top2_margin": 0.75
+        },
+        {
+          "top1_token_id": 103991,
+          "top1_logit": 16.375,
+          "top2_token_id": 101970,
+          "top2_logit": 15.375,
+          "top2_margin": 1.0
+        },
+        {
+          "top1_token_id": 34859,
+          "top1_logit": 20.25,
+          "top2_token_id": 99534,
+          "top2_logit": 15.25,
+          "top2_margin": 5.0
+        },
+        {
+          "top1_token_id": 9370,
+          "top1_logit": 20.25,
+          "top2_token_id": 101103,
+          "top2_logit": 19.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 102285,
+          "top1_logit": 19.5,
+          "top2_token_id": 98402,
+          "top2_logit": 18.25,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 16744,
+          "top1_logit": 25.625,
+          "top2_token_id": 110590,
+          "top2_logit": 18.75,
+          "top2_margin": 6.875
+        },
+        {
+          "top1_token_id": 5373,
+          "top1_logit": 20.625,
+          "top2_token_id": 99604,
+          "top2_logit": 19.75,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 81812,
+          "top1_logit": 24.125,
+          "top2_token_id": 60949,
+          "top2_logit": 19.5,
+          "top2_margin": 4.625
+        },
+        {
+          "top1_token_id": 112950,
+          "top1_logit": 23.75,
+          "top2_token_id": 16476,
+          "top2_logit": 19.625,
+          "top2_margin": 4.125
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 24.375,
+          "top2_token_id": 5373,
+          "top2_logit": 19.875,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 60949,
+          "top1_logit": 23.375,
+          "top2_token_id": 99982,
+          "top2_logit": 18.25,
+          "top2_margin": 5.125
+        },
+        {
+          "top1_token_id": 25511,
+          "top1_logit": 24.375,
+          "top2_token_id": 100760,
+          "top2_logit": 17.5,
+          "top2_margin": 6.875
+        }
+      ]
+    ],
+    "isolated_paged_top2": [
+      [
+        {
+          "top1_token_id": 49434,
+          "top1_logit": 18.875,
+          "top2_token_id": 220,
+          "top2_logit": 17.625,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 239,
+          "top1_logit": 33.75,
+          "top2_token_id": 103,
+          "top2_logit": 22.625,
+          "top2_margin": 11.125
+        },
+        {
+          "top1_token_id": 101909,
+          "top1_logit": 19.75,
+          "top2_token_id": 20412,
+          "top2_logit": 19.625,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 104455,
+          "top1_logit": 16.0,
+          "top2_token_id": 15469,
+          "top2_logit": 15.6875,
+          "top2_margin": 0.3125
+        },
+        {
+          "top1_token_id": 110498,
+          "top1_logit": 20.125,
+          "top2_token_id": 3837,
+          "top2_logit": 19.875,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 3837,
+          "top1_logit": 22.75,
+          "top2_token_id": 1773,
+          "top2_logit": 18.25,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 73670,
+          "top1_logit": 19.75,
+          "top2_token_id": 100006,
+          "top2_logit": 19.625,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 99553,
+          "top1_logit": 21.875,
+          "top2_token_id": 113445,
+          "top2_logit": 21.625,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 100646,
+          "top1_logit": 21.25,
+          "top2_token_id": 27369,
+          "top2_logit": 20.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 27369,
+          "top1_logit": 23.375,
+          "top2_token_id": 99200,
+          "top2_logit": 21.125,
+          "top2_margin": 2.25
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 26.125,
+          "top2_token_id": 5373,
+          "top2_logit": 24.5,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 100364,
+          "top1_logit": 24.25,
+          "top2_token_id": 101898,
+          "top2_logit": 21.875,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 20002,
+          "top1_logit": 22.875,
+          "top2_token_id": 3407,
+          "top2_logit": 22.0,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 107124,
+          "top1_logit": 25.0,
+          "top2_token_id": 1773,
+          "top2_logit": 22.5,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 3407,
+          "top1_logit": 25.625,
+          "top2_token_id": 1773,
+          "top2_logit": 25.5,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 99692,
+          "top1_logit": 17.875,
+          "top2_token_id": 104169,
+          "top2_logit": 17.125,
+          "top2_margin": 0.75
+        }
+      ],
+      [
+        {
+          "top1_token_id": 576,
+          "top1_logit": 18.625,
+          "top2_token_id": 362,
+          "top2_logit": 15.3125,
+          "top2_margin": 3.3125
+        },
+        {
+          "top1_token_id": 12884,
+          "top1_logit": 20.125,
+          "top2_token_id": 6303,
+          "top2_logit": 17.75,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 7952,
+          "top1_logit": 24.125,
+          "top2_token_id": 374,
+          "top2_logit": 19.875,
+          "top2_margin": 4.25
+        },
+        {
+          "top1_token_id": 6303,
+          "top1_logit": 25.375,
+          "top2_token_id": 311,
+          "top2_logit": 19.75,
+          "top2_margin": 5.625
+        },
+        {
+          "top1_token_id": 2337,
+          "top1_logit": 25.5,
+          "top2_token_id": 1576,
+          "top2_logit": 23.125,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 26.375,
+          "top2_token_id": 52021,
+          "top2_logit": 21.5,
+          "top2_margin": 4.875
+        },
+        {
+          "top1_token_id": 1899,
+          "top1_logit": 27.375,
+          "top2_token_id": 52021,
+          "top2_logit": 19.0,
+          "top2_margin": 8.375
+        },
+        {
+          "top1_token_id": 1576,
+          "top1_logit": 26.125,
+          "top2_token_id": 4152,
+          "top2_logit": 25.5,
+          "top2_margin": 0.625
+        },
+        {
+          "top1_token_id": 432,
+          "top1_logit": 19.625,
+          "top2_token_id": 315,
+          "top2_logit": 19.25,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 25963,
+          "top1_logit": 23.75,
+          "top2_token_id": 374,
+          "top2_logit": 23.375,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 39020,
+          "top1_logit": 20.375,
+          "top2_token_id": 279,
+          "top2_logit": 19.5,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 11,
+          "top1_logit": 20.5,
+          "top2_token_id": 323,
+          "top2_logit": 19.5,
+          "top2_margin": 1.0
+        },
+        {
+          "top1_token_id": 892,
+          "top1_logit": 21.25,
+          "top2_token_id": 323,
+          "top2_logit": 19.625,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 374,
+          "top1_logit": 20.125,
+          "top2_token_id": 5610,
+          "top2_logit": 19.625,
+          "top2_margin": 0.5
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 19.75,
+          "top2_token_id": 6303,
+          "top2_logit": 19.75,
+          "top2_margin": 0.0
+        },
+        {
+          "top1_token_id": 2530,
+          "top1_logit": 19.125,
+          "top2_token_id": 6028,
+          "top2_logit": 18.625,
+          "top2_margin": 0.5
+        }
+      ],
+      [
+        {
+          "top1_token_id": 262,
+          "top1_logit": 22.0,
+          "top2_token_id": 750,
+          "top2_logit": 19.5,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 421,
+          "top1_logit": 21.125,
+          "top2_token_id": 671,
+          "top2_logit": 21.0,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 24.25,
+          "top2_token_id": 537,
+          "top2_logit": 19.75,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 23.375,
+          "top2_token_id": 2651,
+          "top2_logit": 23.0,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 25.875,
+          "top2_token_id": 15,
+          "top2_logit": 17.75,
+          "top2_margin": 8.125
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.75,
+          "top2_token_id": 16,
+          "top2_logit": 26.125,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 510,
+          "top1_logit": 24.0,
+          "top2_token_id": 476,
+          "top2_logit": 22.125,
+          "top2_margin": 1.875
+        },
+        {
+          "top1_token_id": 286,
+          "top1_logit": 27.0,
+          "top2_token_id": 414,
+          "top2_logit": 21.125,
+          "top2_margin": 5.875
+        },
+        {
+          "top1_token_id": 470,
+          "top1_logit": 25.625,
+          "top2_token_id": 671,
+          "top2_logit": 19.75,
+          "top2_margin": 5.875
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 24.375,
+          "top2_token_id": 2240,
+          "top2_logit": 20.625,
+          "top2_margin": 3.75
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.875,
+          "top2_token_id": 16,
+          "top2_logit": 23.875,
+          "top2_margin": 4.0
+        },
+        {
+          "top1_token_id": 198,
+          "top1_logit": 24.25,
+          "top2_token_id": 271,
+          "top2_logit": 19.25,
+          "top2_margin": 5.0
+        },
+        {
+          "top1_token_id": 262,
+          "top1_logit": 27.0,
+          "top2_token_id": 286,
+          "top2_logit": 18.5,
+          "top2_margin": 8.5
+        },
+        {
+          "top1_token_id": 4409,
+          "top1_logit": 24.875,
+          "top2_token_id": 421,
+          "top2_logit": 22.75,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 26.75,
+          "top2_token_id": 220,
+          "top2_logit": 19.5,
+          "top2_margin": 7.25
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 25.5,
+          "top2_token_id": 366,
+          "top2_logit": 20.75,
+          "top2_margin": 4.75
+        }
+      ],
+      [
+        {
+          "top1_token_id": 220,
+          "top1_logit": 15.6875,
+          "top2_token_id": 73562,
+          "top2_logit": 15.625,
+          "top2_margin": 0.0625
+        },
+        {
+          "top1_token_id": 16,
+          "top1_logit": 20.625,
+          "top2_token_id": 104455,
+          "top2_logit": 19.375,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 13,
+          "top1_logit": 19.375,
+          "top2_token_id": 8,
+          "top2_logit": 17.25,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 16.25,
+          "top2_token_id": 73562,
+          "top2_logit": 15.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 101887,
+          "top1_logit": 18.875,
+          "top2_token_id": 46944,
+          "top2_logit": 18.0,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 103991,
+          "top1_logit": 16.25,
+          "top2_token_id": 101970,
+          "top2_logit": 15.3125,
+          "top2_margin": 0.9375
+        },
+        {
+          "top1_token_id": 34859,
+          "top1_logit": 20.375,
+          "top2_token_id": 99534,
+          "top2_logit": 15.25,
+          "top2_margin": 5.125
+        },
+        {
+          "top1_token_id": 9370,
+          "top1_logit": 20.375,
+          "top2_token_id": 101103,
+          "top2_logit": 19.25,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 102285,
+          "top1_logit": 19.5,
+          "top2_token_id": 98402,
+          "top2_logit": 18.25,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 16744,
+          "top1_logit": 25.5,
+          "top2_token_id": 110590,
+          "top2_logit": 18.625,
+          "top2_margin": 6.875
+        },
+        {
+          "top1_token_id": 5373,
+          "top1_logit": 20.5,
+          "top2_token_id": 99604,
+          "top2_logit": 19.75,
+          "top2_margin": 0.75
+        },
+        {
+          "top1_token_id": 81812,
+          "top1_logit": 24.25,
+          "top2_token_id": 60949,
+          "top2_logit": 19.5,
+          "top2_margin": 4.75
+        },
+        {
+          "top1_token_id": 112950,
+          "top1_logit": 23.75,
+          "top2_token_id": 16476,
+          "top2_logit": 19.625,
+          "top2_margin": 4.125
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 24.375,
+          "top2_token_id": 5373,
+          "top2_logit": 20.0,
+          "top2_margin": 4.375
+        },
+        {
+          "top1_token_id": 60949,
+          "top1_logit": 23.5,
+          "top2_token_id": 99982,
+          "top2_logit": 18.125,
+          "top2_margin": 5.375
+        },
+        {
+          "top1_token_id": 25511,
+          "top1_logit": 24.375,
+          "top2_token_id": 100760,
+          "top2_logit": 17.5,
+          "top2_margin": 6.875
+        }
+      ]
+    ],
+    "batched_scheduler_top2": [
+      [
+        {
+          "top1_token_id": 49434,
+          "top1_logit": 18.875,
+          "top2_token_id": 220,
+          "top2_logit": 17.625,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 239,
+          "top1_logit": 33.75,
+          "top2_token_id": 103,
+          "top2_logit": 22.5,
+          "top2_margin": 11.25
+        },
+        {
+          "top1_token_id": 101909,
+          "top1_logit": 19.875,
+          "top2_token_id": 20412,
+          "top2_logit": 19.625,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 104455,
+          "top1_logit": 16.125,
+          "top2_token_id": 15469,
+          "top2_logit": 15.8125,
+          "top2_margin": 0.3125
+        },
+        {
+          "top1_token_id": 110498,
+          "top1_logit": 20.125,
+          "top2_token_id": 3837,
+          "top2_logit": 20.0,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 3837,
+          "top1_logit": 22.875,
+          "top2_token_id": 1773,
+          "top2_logit": 18.375,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 73670,
+          "top1_logit": 19.75,
+          "top2_token_id": 100006,
+          "top2_logit": 19.625,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 99553,
+          "top1_logit": 22.0,
+          "top2_token_id": 113445,
+          "top2_logit": 21.75,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 100646,
+          "top1_logit": 21.25,
+          "top2_token_id": 27369,
+          "top2_logit": 20.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 27369,
+          "top1_logit": 23.375,
+          "top2_token_id": 99200,
+          "top2_logit": 21.25,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 26.125,
+          "top2_token_id": 5373,
+          "top2_logit": 24.5,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 100364,
+          "top1_logit": 24.375,
+          "top2_token_id": 101898,
+          "top2_logit": 22.0,
+          "top2_margin": 2.375
+        },
+        {
+          "top1_token_id": 20002,
+          "top1_logit": 22.75,
+          "top2_token_id": 3407,
+          "top2_logit": 22.0,
+          "top2_margin": 0.75
+        },
+        {
+          "top1_token_id": 107124,
+          "top1_logit": 25.0,
+          "top2_token_id": 1773,
+          "top2_logit": 22.5,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 3407,
+          "top1_logit": 25.75,
+          "top2_token_id": 1773,
+          "top2_logit": 25.5,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 99692,
+          "top1_logit": 17.875,
+          "top2_token_id": 104169,
+          "top2_logit": 17.25,
+          "top2_margin": 0.625
+        }
+      ],
+      [
+        {
+          "top1_token_id": 576,
+          "top1_logit": 18.625,
+          "top2_token_id": 362,
+          "top2_logit": 15.3125,
+          "top2_margin": 3.3125
+        },
+        {
+          "top1_token_id": 12884,
+          "top1_logit": 20.25,
+          "top2_token_id": 6303,
+          "top2_logit": 17.75,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 7952,
+          "top1_logit": 24.25,
+          "top2_token_id": 374,
+          "top2_logit": 19.875,
+          "top2_margin": 4.375
+        },
+        {
+          "top1_token_id": 6303,
+          "top1_logit": 25.375,
+          "top2_token_id": 311,
+          "top2_logit": 19.875,
+          "top2_margin": 5.5
+        },
+        {
+          "top1_token_id": 2337,
+          "top1_logit": 25.5,
+          "top2_token_id": 1576,
+          "top2_logit": 23.25,
+          "top2_margin": 2.25
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 26.375,
+          "top2_token_id": 52021,
+          "top2_logit": 21.5,
+          "top2_margin": 4.875
+        },
+        {
+          "top1_token_id": 1899,
+          "top1_logit": 27.375,
+          "top2_token_id": 52021,
+          "top2_logit": 19.0,
+          "top2_margin": 8.375
+        },
+        {
+          "top1_token_id": 1576,
+          "top1_logit": 26.0,
+          "top2_token_id": 4152,
+          "top2_logit": 25.5,
+          "top2_margin": 0.5
+        },
+        {
+          "top1_token_id": 432,
+          "top1_logit": 19.625,
+          "top2_token_id": 315,
+          "top2_logit": 19.375,
+          "top2_margin": 0.25
+        },
+        {
+          "top1_token_id": 25963,
+          "top1_logit": 23.75,
+          "top2_token_id": 374,
+          "top2_logit": 23.375,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 39020,
+          "top1_logit": 20.375,
+          "top2_token_id": 279,
+          "top2_logit": 19.625,
+          "top2_margin": 0.75
+        },
+        {
+          "top1_token_id": 11,
+          "top1_logit": 20.625,
+          "top2_token_id": 323,
+          "top2_logit": 19.625,
+          "top2_margin": 1.0
+        },
+        {
+          "top1_token_id": 892,
+          "top1_logit": 21.375,
+          "top2_token_id": 323,
+          "top2_logit": 19.625,
+          "top2_margin": 1.75
+        },
+        {
+          "top1_token_id": 374,
+          "top1_logit": 20.125,
+          "top2_token_id": 5610,
+          "top2_logit": 19.75,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 279,
+          "top1_logit": 19.875,
+          "top2_token_id": 6303,
+          "top2_logit": 19.875,
+          "top2_margin": 0.0
+        },
+        {
+          "top1_token_id": 2530,
+          "top1_logit": 19.125,
+          "top2_token_id": 6028,
+          "top2_logit": 18.75,
+          "top2_margin": 0.375
+        }
+      ],
+      [
+        {
+          "top1_token_id": 262,
+          "top1_logit": 22.0,
+          "top2_token_id": 750,
+          "top2_logit": 19.5,
+          "top2_margin": 2.5
+        },
+        {
+          "top1_token_id": 421,
+          "top1_logit": 21.125,
+          "top2_token_id": 671,
+          "top2_logit": 21.0,
+          "top2_margin": 0.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 24.375,
+          "top2_token_id": 537,
+          "top2_logit": 19.875,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 23.5,
+          "top2_token_id": 2651,
+          "top2_logit": 23.125,
+          "top2_margin": 0.375
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 26.0,
+          "top2_token_id": 15,
+          "top2_logit": 17.75,
+          "top2_margin": 8.25
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.75,
+          "top2_token_id": 16,
+          "top2_logit": 26.125,
+          "top2_margin": 1.625
+        },
+        {
+          "top1_token_id": 510,
+          "top1_logit": 24.0,
+          "top2_token_id": 476,
+          "top2_logit": 22.125,
+          "top2_margin": 1.875
+        },
+        {
+          "top1_token_id": 286,
+          "top1_logit": 27.0,
+          "top2_token_id": 414,
+          "top2_logit": 21.125,
+          "top2_margin": 5.875
+        },
+        {
+          "top1_token_id": 470,
+          "top1_logit": 25.75,
+          "top2_token_id": 671,
+          "top2_logit": 19.75,
+          "top2_margin": 6.0
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 24.5,
+          "top2_token_id": 2240,
+          "top2_logit": 20.625,
+          "top2_margin": 3.875
+        },
+        {
+          "top1_token_id": 15,
+          "top1_logit": 27.875,
+          "top2_token_id": 16,
+          "top2_logit": 23.875,
+          "top2_margin": 4.0
+        },
+        {
+          "top1_token_id": 198,
+          "top1_logit": 24.25,
+          "top2_token_id": 271,
+          "top2_logit": 19.0,
+          "top2_margin": 5.25
+        },
+        {
+          "top1_token_id": 262,
+          "top1_logit": 26.875,
+          "top2_token_id": 286,
+          "top2_logit": 18.375,
+          "top2_margin": 8.5
+        },
+        {
+          "top1_token_id": 4409,
+          "top1_logit": 24.875,
+          "top2_token_id": 421,
+          "top2_logit": 22.75,
+          "top2_margin": 2.125
+        },
+        {
+          "top1_token_id": 308,
+          "top1_logit": 26.875,
+          "top2_token_id": 220,
+          "top2_logit": 19.75,
+          "top2_margin": 7.125
+        },
+        {
+          "top1_token_id": 621,
+          "top1_logit": 25.375,
+          "top2_token_id": 366,
+          "top2_logit": 20.625,
+          "top2_margin": 4.75
+        }
+      ],
+      [
+        {
+          "top1_token_id": 220,
+          "top1_logit": 15.6875,
+          "top2_token_id": 73562,
+          "top2_logit": 15.625,
+          "top2_margin": 0.0625
+        },
+        {
+          "top1_token_id": 16,
+          "top1_logit": 20.5,
+          "top2_token_id": 104455,
+          "top2_logit": 19.375,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 13,
+          "top1_logit": 19.25,
+          "top2_token_id": 8,
+          "top2_logit": 17.25,
+          "top2_margin": 2.0
+        },
+        {
+          "top1_token_id": 220,
+          "top1_logit": 16.25,
+          "top2_token_id": 73562,
+          "top2_logit": 15.125,
+          "top2_margin": 1.125
+        },
+        {
+          "top1_token_id": 101887,
+          "top1_logit": 18.875,
+          "top2_token_id": 46944,
+          "top2_logit": 18.0,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 103991,
+          "top1_logit": 16.125,
+          "top2_token_id": 101970,
+          "top2_logit": 15.25,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 34859,
+          "top1_logit": 20.25,
+          "top2_token_id": 99534,
+          "top2_logit": 15.25,
+          "top2_margin": 5.0
+        },
+        {
+          "top1_token_id": 9370,
+          "top1_logit": 20.25,
+          "top2_token_id": 101103,
+          "top2_logit": 19.25,
+          "top2_margin": 1.0
+        },
+        {
+          "top1_token_id": 102285,
+          "top1_logit": 19.5,
+          "top2_token_id": 98402,
+          "top2_logit": 18.25,
+          "top2_margin": 1.25
+        },
+        {
+          "top1_token_id": 16744,
+          "top1_logit": 25.75,
+          "top2_token_id": 110590,
+          "top2_logit": 18.75,
+          "top2_margin": 7.0
+        },
+        {
+          "top1_token_id": 5373,
+          "top1_logit": 20.625,
+          "top2_token_id": 99604,
+          "top2_logit": 19.75,
+          "top2_margin": 0.875
+        },
+        {
+          "top1_token_id": 81812,
+          "top1_logit": 24.25,
+          "top2_token_id": 60949,
+          "top2_logit": 19.5,
+          "top2_margin": 4.75
+        },
+        {
+          "top1_token_id": 112950,
+          "top1_logit": 23.875,
+          "top2_token_id": 16476,
+          "top2_logit": 19.625,
+          "top2_margin": 4.25
+        },
+        {
+          "top1_token_id": 33108,
+          "top1_logit": 24.375,
+          "top2_token_id": 5373,
+          "top2_logit": 19.875,
+          "top2_margin": 4.5
+        },
+        {
+          "top1_token_id": 60949,
+          "top1_logit": 23.5,
+          "top2_token_id": 99982,
+          "top2_logit": 18.125,
+          "top2_margin": 5.375
+        },
+        {
+          "top1_token_id": 25511,
+          "top1_logit": 24.375,
+          "top2_token_id": 100760,
+          "top2_logit": 17.5,
+          "top2_margin": 6.875
+        }
+      ]
+    ],
+    "first_divergences": [],
+    "incremental_peak_allocated_mib": 42.130859375,
+    "actual_texts": [
+      " \u6211\u662f\u4e00\u4e2a\u4eba\u5de5\u667a\u80fd\u52a9\u624b\uff0c\u53ef\u4ee5\u63d0\u4f9b\u5404\u79cd\u4fe1\u606f\u548c\u5e2e\u52a9\u7528\u6237\u89e3\u51b3\u95ee\u9898\u3002\n\n\u597d\u7684",
+      " The sky appears blue during the day because it reflects sunlight, which is the source",
+      "    if n == 0:\n        return 0\n    elif n ==",
+      " 1. \u7531\u4e8e\u6bcf\u4e2a\u8bf7\u6c42\u7684\u4e0a\u4e0b\u6587\u3001\u4f4d\u7f6e\u7f16\u7801\u548c\u952e\u503c"
+    ],
+    "dense_expected_texts": [
+      " \u6211\u662f\u4e00\u4e2a\u4eba\u5de5\u667a\u80fd\u52a9\u624b\uff0c\u53ef\u4ee5\u63d0\u4f9b\u5404\u79cd\u4fe1\u606f\u548c\u5e2e\u52a9\u7528\u6237\u89e3\u51b3\u95ee\u9898\u3002\n\n\u597d\u7684",
+      " The sky appears blue during the day because it reflects sunlight, which is the source",
+      "    if n == 0:\n        return 0\n    elif n ==",
+      " 1. \u7531\u4e8e\u6bcf\u4e2a\u8bf7\u6c42\u7684\u4e0a\u4e0b\u6587\u3001\u4f4d\u7f6e\u7f16\u7801\u548c\u952e\u503c"
+    ],
+    "isolated_expected_texts": [
+      " \u6211\u662f\u4e00\u4e2a\u4eba\u5de5\u667a\u80fd\u52a9\u624b\uff0c\u53ef\u4ee5\u63d0\u4f9b\u5404\u79cd\u4fe1\u606f\u548c\u5e2e\u52a9\u7528\u6237\u89e3\u51b3\u95ee\u9898\u3002\n\n\u597d\u7684",
+      " The sky appears blue during the day because it reflects sunlight, which is the source",
+      "    if n == 0:\n        return 0\n    elif n ==",
+      " 1. \u7531\u4e8e\u6bcf\u4e2a\u8bf7\u6c42\u7684\u4e0a\u4e0b\u6587\u3001\u4f4d\u7f6e\u7f16\u7801\u548c\u952e\u503c"
+    ]
+  }
+]

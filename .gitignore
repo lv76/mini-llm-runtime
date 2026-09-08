@@ -30,6 +30,12 @@ outputs/
 runs/
 wandb/
 
+# Generated profiler reports
+*.ncu-rep
+
+# Local documentation drafts
+docs/
+
 # Common large model files
 *.pt
 *.pth

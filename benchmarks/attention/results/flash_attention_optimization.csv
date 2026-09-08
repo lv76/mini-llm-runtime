@@ -1,0 +1,4 @@
+config,block_m,block_n,num_warps,num_stages,median_latency_ms
+bm16_bn64_w4_s2,16,64,4,2,0.278028
+bm32_bn64_w4_s2,32,64,4,2,0.225257
+bm64_bn64_w4_s2,64,64,4,2,0.183048

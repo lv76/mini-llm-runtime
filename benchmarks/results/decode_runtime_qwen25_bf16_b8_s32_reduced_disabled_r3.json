@@ -1,0 +1,55 @@
+{
+  "args": {
+    "model_dir": "checkpoints/Qwen2.5-0.5B",
+    "device": "cuda",
+    "dtype": "bfloat16",
+    "batch_sizes": [
+      8
+    ],
+    "context_lens": [
+      32
+    ],
+    "ragged": false,
+    "block_size": 16,
+    "warmup": 10,
+    "samples": 50,
+    "threads": 1,
+    "strict_validation": false,
+    "input_validation": "benchmarks/results/decode_runtime_qwen25_bf16_s32_128_512.validation.json",
+    "disable_bf16_reduced_precision_reduction": true,
+    "output": "benchmarks/results/decode_runtime_qwen25_bf16_b8_s32_reduced_disabled_r3.csv"
+  },
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "git_head": "1b55e12b3fd7bbced09d420294f1a89daa486854",
+  "source_sha256": {
+    "src/mini_llm_runtime/model/qwen2.py": "45914714c61acf995ce1ffa66a5a8e0e8959aee5b0fd6947a3c08c3c7ff90488",
+    "src/mini_llm_runtime/runtime/model_runner.py": "4758825b356b72d0fb7a563a2cc4b6fd7570224c4e159fde03f13744b0f8d07a",
+    "src/mini_llm_runtime/runtime/paged_kv_cache.py": "547b0a0022a62f35318e389d5cbc119f4cf4542b5ab1c06991d32992a7024bf4",
+    "src/mini_llm_runtime/kernels/reference/paged_attention.py": "d621a3222ba67653e474ae64400adea5324ae1b69dfe3cbff8a600047be17c31",
+    "/home/lzh/mini-llm-runtime/benchmarks/benchmark_decode_runtime.py": "22c76c00e8f6ba838ff482542a500c1347c01af64bc85582d14e740289631b34"
+  },
+  "config": {
+    "vocab_size": 151936,
+    "hidden_size": 896,
+    "intermediate_size": 4864,
+    "num_hidden_layers": 24,
+    "num_attention_heads": 14,
+    "num_key_value_heads": 2,
+    "max_position_embeddings": 32768,
+    "rope_theta": 1000000.0,
+    "rms_norm_eps": 1e-06,
+    "tie_word_embeddings": true,
+    "bos_token_id": 151643,
+    "eos_token_id": 151643
+  },
+  "seed": 42,
+  "timing": "synchronized wall-clock; fixed decode step; excludes prefill, scheduling, and sampling",
+  "baseline": "local single-request Python paged reference; not HF or vLLM",
+  "model": "checkpoints/Qwen2.5-0.5B",
+  "validation_policy": "FP32/strict: fail on tolerance; FP16/BF16: report failed tolerance and continue timing; non-finite: always abort",
+  "allow_bf16_reduced_precision_reduction": false,
+  "input_validation_sha256": "3c65154c104650b55d7c8dbe8c5bd1185b729f96e72c49c1e6d51e13c7491e4e"
+}

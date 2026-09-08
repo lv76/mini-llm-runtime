@@ -1,0 +1,2 @@
+ttft_mean_ms,ttft_max_ms,tpot_mean_ms,tpot_p95_ms,e2e_max_ms,output_tokens_per_second,request_throughput_per_second,peak_used_kv_blocks,total_kv_blocks,peak_kv_utilization,num_iterations,greedy_match,dense_greedy_match,isolated_paged_greedy_match,dense_isolated_greedy_match,incremental_peak_allocated_mib,sample
+92.52088899847877,92.52088899847877,43.44209100005779,53.66528800004744,744.1522539993457,86.00390532453628,5.375244082783517,12,12,1.0,16,True,True,True,True,115.89501953125,0

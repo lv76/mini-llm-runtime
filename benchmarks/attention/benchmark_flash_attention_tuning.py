@@ -15,41 +15,6 @@ REPEATS = 5
 
 CONFIGS = [
     {
-        "name": "bm16_bn64_w4_s2",
-        "block_m": 16,
-        "block_n": 64,
-        "num_warps": 4,
-        "num_stages": 2,
-    },
-    {
-        "name": "bm16_bn64_w4_s1",
-        "block_m": 16,
-        "block_n": 64,
-        "num_warps": 4,
-        "num_stages": 1,
-    },
-    {
-        "name": "bm16_bn32_w4_s2",
-        "block_m": 16,
-        "block_n": 32,
-        "num_warps": 4,
-        "num_stages": 2,
-    },
-    {
-        "name": "bm16_bn64_w8_s2",
-        "block_m": 16,
-        "block_n": 64,
-        "num_warps": 8,
-        "num_stages": 2,
-    },
-    {
-        "name": "bm32_bn64_w4_s2",
-        "block_m": 32,
-        "block_n": 64,
-        "num_warps": 4,
-        "num_stages": 2,
-    },
-    {
         "name": "bm64_bn64_w4_s2",
         "block_m": 64,
         "block_n": 64,
@@ -57,32 +22,11 @@ CONFIGS = [
         "num_stages": 2,
     },
     {
-        "name": "bm64_bn64_w4_s1",
-        "block_m": 64,
-        "block_n": 64,
-        "num_warps": 4,
-        "num_stages": 1,
-    },
-    {
         "name": "bm64_bn64_w4_s3",
         "block_m": 64,
         "block_n": 64,
         "num_warps": 4,
         "num_stages": 3,
-    },
-    {
-        "name": "bm64_bn64_w8_s2",
-        "block_m": 64,
-        "block_n": 64,
-        "num_warps": 8,
-        "num_stages": 2,
-    },
-    {
-        "name": "bm64_bn128_w4_s2",
-        "block_m": 64,
-        "block_n": 128,
-        "num_warps": 4,
-        "num_stages": 2,
     },
     {
         "name": "bm128_bn64_w4_s2",
@@ -342,7 +286,7 @@ def main():
         / "flash_attention_tuning_s2048.csv"
     )
     save_results(results, output_path)
-    print(f"\nSaved results to: {output_path}")
+    print(f"\nSaved results to: {output_path}", flush=True)
 
 
 if __name__ == "__main__":
