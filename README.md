@@ -20,6 +20,10 @@ Implemented and numerically verified:
 - Qwen2 RMSNorm, RoPE, GQA, causal attention, SwiGLU, decoder layers and LM head;
 - multilayer paged KV cache with block tables and slot mappings;
 - cache-aware prefill and paged single-token decode;
+- FP32/BF16 tiled paged chunk-prefill attention with GQA/MQA support,
+  causal masking by absolute token position, and online-softmax accumulation;
+- cache-aware chunk-prefill integration at the `Qwen2Attention` layer, aligned
+  with dense full-context attention across multiple KV tile sizes;
 - incremental logits aligned with dense full-sequence recomputation;
 - mixed prefill/decode `ModelBatch` execution;
 - single-step generation API and greedy multi-step generation;
@@ -42,7 +46,10 @@ The current `ModelBatch` executor runs all decode requests in one batched Qwen2
 call and scatters their logits back into the original packed token order.
 Prefill still runs per request. Batched decode uses tensorized PyTorch paged
 attention with batched KV writes. A batched Triton kernel has not yet been
-connected. Real-model generation and the Scheduler benchmark default to a
+connected. Chunked Prefill is currently complete through the reference kernel
+and `Qwen2Attention`; it has not yet been propagated through DecoderLayer,
+the full model, ModelRunner, Request state, or Scheduler. Real-model generation
+and the Scheduler benchmark default to a
 mixed-precision mode: BF16 weights/activations/KV cache, FP32 RMSNorm
 statistics and attention softmax, with reduced-precision BF16 GEMM reductions
 disabled. FP32 remains the strict correctness reference; BF16 is not required
@@ -50,16 +57,19 @@ to reproduce FP32 greedy tokens at near-tied decision boundaries.
 
 ## Next milestones
 
-1. Compare multi-step paged greedy token IDs against Hugging Face `generate()`
+1. Propagate Chunked Prefill through `Qwen2DecoderLayer`, the full Qwen2 model,
+   ModelRunner, Request state, and Scheduler; intermediate chunks must not
+   sample, and only the final prompt chunk may produce the first output token.
+2. Compare multi-step paged greedy token IDs against Hugging Face `generate()`
    while exercising repeated block growth.
-2. Benchmark sequential and batched full-model decode on Qwen2.5-0.5B BF16,
+3. Benchmark sequential and batched full-model decode on Qwen2.5-0.5B BF16,
    including TPOT, throughput, peak memory, and ragged-batch overhead.
-3. Sweep Scheduler arrival rates and concurrency limits to locate throughput
+4. Sweep Scheduler arrival rates and concurrency limits to locate throughput
    saturation and the onset of TTFT tail-latency growth.
-4. Profile the resulting bottlenecks, then connect a batched Triton paged
+5. Profile the resulting bottlenecks, then connect a batched Triton paged
    decode kernel and add packed varlen prefill.
-5. Add broader FP16/BF16 end-to-end coverage for the serving path.
-6. Reduce FIFO head-of-line blocking when a large waiting request cannot be
+6. Add broader FP16/BF16 end-to-end coverage for the serving path.
+7. Reduce FIFO head-of-line blocking when a large waiting request cannot be
    admitted but smaller requests behind it could make progress.
 
 See `docs/single_request_paged_qwen2_walkthrough.md` for the current execution

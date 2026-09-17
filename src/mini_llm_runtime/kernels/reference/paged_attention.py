@@ -278,3 +278,157 @@ def test_paged_attention_decode_rejects_invalid_head_ratio():
             seq_len=4,
             block_size=4,
         )
+
+def paged_attention_prefill_chunk_tiled_reference(
+    q: torch.Tensor,
+    k_cache: torch.Tensor,
+    v_cache: torch.Tensor,
+    block_table: list[int] | torch.Tensor,
+    prefix_len: int,
+    context_len: int,
+    block_size: int,
+    tile_size: int,
+) -> torch.Tensor:
+    """Dense correctness reference for paged chunk-prefill attention."""
+    del tile_size
+    if context_len != prefix_len + q.shape[0]:
+        raise ValueError(
+            "context_len must equal prefix_len + q.shape[0]"
+        )
+    q_num_heads = q.shape[1]
+    kv_num_heads = k_cache.shape[2]
+    if q_num_heads % kv_num_heads != 0:
+        raise ValueError(
+            "q_num_heads must be divisible by kv_num_heads"
+        )
+    group_size = q_num_heads // kv_num_heads
+
+    chunk_len = q.shape[0]
+    positions = torch.arange(context_len, device=q.device)
+    logical_blocks = positions // block_size
+    offsets = positions % block_size
+    block_table_tensor = torch.as_tensor(
+        block_table,
+        dtype=torch.long,
+        device=q.device,
+    )
+    physical_slots = (
+        block_table_tensor[logical_blocks] * block_size + offsets
+    )
+    flat_k_cache = k_cache.flatten(0, 1)
+    flat_v_cache = v_cache.flatten(0, 1)
+    keys = flat_k_cache[physical_slots].permute(1, 0, 2)
+    values = flat_v_cache[physical_slots].permute(1, 0, 2)
+    keys = keys.repeat_interleave(group_size, dim=0)
+    values = values.repeat_interleave(group_size, dim=0)
+
+    query = q.permute(1, 0, 2)
+    scores = (
+        query @ keys.transpose(-2, -1)
+    ) / math.sqrt(q.shape[-1])
+    query_positions = prefix_len + torch.arange(
+        chunk_len,
+        device=q.device,
+    )
+    causal_mask = positions.unsqueeze(0) <= query_positions.unsqueeze(1)
+    scores = scores.masked_fill(
+        ~causal_mask.unsqueeze(0),
+        float("-inf"),
+    )
+    probabilities = torch.softmax(
+        scores,
+        dim=-1,
+        dtype=torch.float32,
+    ).to(values.dtype)
+    return (probabilities @ values).permute(1, 0, 2)
+
+
+def paged_attention_prefill_chunk_tiled(
+    q: torch.Tensor,
+    k_cache: torch.Tensor,
+    v_cache: torch.Tensor,
+    block_table: list[int] | torch.Tensor,
+    prefix_len: int,
+    context_len: int,
+    block_size: int,
+    tile_size: int,
+) -> torch.Tensor:
+    """Compute paged chunk-prefill attention with tiled online softmax."""
+    if tile_size <= 0:
+        raise ValueError("tile_size must be greater than 0")
+    if context_len != prefix_len + q.shape[0]:
+        raise ValueError(
+            "context_len must equal prefix_len + q.shape[0]"
+        )
+    q_num_heads = q.shape[1]
+    kv_num_heads = k_cache.shape[2]
+    if q_num_heads % kv_num_heads != 0:
+        raise ValueError(
+            "q_num_heads must be divisible by kv_num_heads"
+        )
+    group_size = q_num_heads // kv_num_heads
+
+    chunk_len = q.shape[0]
+    state_shape = (q_num_heads, chunk_len)
+    overall_acc = torch.zeros(
+        (*state_shape, q.shape[-1]),
+        dtype=torch.float32,
+        device=q.device,
+    )
+    overall_max = torch.full(
+        (*state_shape, 1),
+        float("-inf"),
+        dtype=torch.float32,
+        device=q.device,
+    )
+    overall_sum = torch.zeros_like(overall_max)
+    block_table_tensor = torch.as_tensor(
+        block_table,
+        dtype=torch.long,
+        device=q.device,
+    )
+    query = q.permute(1, 0, 2)
+    flat_k_cache = k_cache.flatten(0, 1)
+    flat_v_cache = v_cache.flatten(0, 1)
+    query_positions = prefix_len + torch.arange(
+        chunk_len,
+        device=q.device,
+    )
+
+    for tile_start in range(0, context_len, tile_size):
+        tile_end = min(tile_start + tile_size, context_len)
+        positions = torch.arange(tile_start, tile_end, device=q.device)
+        logical_blocks = positions // block_size
+        offsets = positions % block_size
+        physical_slots = (
+            block_table_tensor[logical_blocks] * block_size + offsets
+        )
+        keys = flat_k_cache[physical_slots].permute(1, 0, 2)
+        values = flat_v_cache[physical_slots].permute(1, 0, 2)
+        keys = keys.repeat_interleave(group_size, dim=0)
+        values = values.repeat_interleave(group_size, dim=0)
+
+        scores = (
+            query @ keys.transpose(-2, -1)
+        ) / math.sqrt(q.shape[-1])
+        causal_mask = positions.unsqueeze(0) <= query_positions.unsqueeze(1)
+        scores = scores.to(torch.float32).masked_fill(
+            ~causal_mask.unsqueeze(0),
+            float("-inf"),
+        )
+        tile_max = scores.max(dim=-1, keepdim=True).values
+        old_max = overall_max
+        overall_max = torch.maximum(old_max, tile_max)
+        old_scale = torch.exp(old_max - overall_max)
+        tile_weights = torch.exp(scores - overall_max)
+        overall_sum = (
+            overall_sum * old_scale
+            + tile_weights.sum(dim=-1, keepdim=True)
+        )
+        overall_acc = (
+            overall_acc * old_scale
+            + tile_weights @ values.to(torch.float32)
+        )
+
+    output = overall_acc / overall_sum
+    return output.to(q.dtype).permute(1, 0, 2)

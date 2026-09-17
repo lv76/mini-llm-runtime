@@ -681,6 +681,78 @@ def test_qwen2_attention_prefill_with_cache_matches_dense():
         )
 
 
+@pytest.mark.parametrize("tile_size", [1, 3, 16])
+def test_qwen2_attention_chunk_prefill_matches_dense(tile_size):
+    torch.manual_seed(21)
+    config = TinyQwen2Config()
+    module = Qwen2Attention(config)
+    prefix_len = 5
+    chunk_len = 4
+    context_len = prefix_len + chunk_len
+    block_size = 4
+    layer_idx = 1
+    seq_id = "request-0"
+    kv_cache = PagedKVCache(
+        num_layers=config.num_hidden_layers,
+        num_blocks=5,
+        block_size=block_size,
+        num_kv_heads=config.num_key_value_heads,
+        head_dim=config.head_dim,
+        dtype=torch.float32,
+    )
+    kv_cache.add_sequence(seq_id)
+    assert kv_cache.reserve_tokens(seq_id, context_len)
+
+    hidden_states = torch.randn(1, context_len, config.hidden_size)
+    position_ids = torch.arange(context_len).unsqueeze(0)
+    dense_output = module(hidden_states, position_ids)
+
+    block_table = kv_cache.block_tables[seq_id]
+    prefix_slots = torch.tensor(
+        [
+            block_table[position // block_size] * block_size
+            + position % block_size
+            for position in range(prefix_len)
+        ],
+        dtype=torch.long,
+    )
+    module.forward_prefill_with_cache(
+        hidden_states[:, :prefix_len],
+        position_ids[:, :prefix_len],
+        kv_cache,
+        layer_idx,
+        prefix_slots,
+    )
+
+    chunk_slots = torch.tensor(
+        [
+            block_table[position // block_size] * block_size
+            + position % block_size
+            for position in range(prefix_len, context_len)
+        ],
+        dtype=torch.long,
+    )
+    chunk_output = module.forward_prefill_chunk_with_cache(
+        hidden_states=hidden_states[:, prefix_len:],
+        position_ids=position_ids[:, prefix_len:],
+        kv_cache=kv_cache,
+        layer_idx=layer_idx,
+        slot_mapping=chunk_slots,
+        block_table=block_table,
+        prefix_len=prefix_len,
+        context_len=context_len,
+        tile_size=tile_size,
+    )
+
+    assert chunk_output.shape == (1, chunk_len, config.hidden_size)
+    torch.testing.assert_close(
+        chunk_output,
+        dense_output[:, prefix_len:],
+        rtol=1e-5,
+        atol=1e-6,
+    )
+
+
 def test_qwen2_attention_paged_decode_matches_dense_last_token():
     torch.manual_seed(1)
     config = TinyQwen2Config()

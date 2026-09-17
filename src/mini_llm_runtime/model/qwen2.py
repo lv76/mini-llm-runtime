@@ -8,6 +8,7 @@ from mini_llm_runtime.runtime.paged_kv_cache import PagedKVCache
 from mini_llm_runtime.kernels.reference.paged_attention import (
     paged_attention_decode,
     paged_attention_decode_batch_parallel,
+    paged_attention_prefill_chunk_tiled,
 )
 
 @dataclass(frozen=True)
@@ -437,8 +438,6 @@ class Qwen2Attention(nn.Module):
         )
         return self.o_proj(attention_output)
 
-
-
     def forward_decode_with_cache(
         self,
         hidden_states: torch.Tensor,
@@ -540,7 +539,6 @@ class Qwen2Attention(nn.Module):
         return self.o_proj(attention_output)
 
     
-
     def forward_decode_batch_with_cache(
         self,
         hidden_states: torch.Tensor,
@@ -623,6 +621,150 @@ class Qwen2Attention(nn.Module):
         )
         return self.o_proj(attention_output.reshape(batch_size, 1, self.hidden_size))
 
+    def forward_prefill_chunk_with_cache(
+        self,
+        hidden_states: torch.Tensor,
+        position_ids: torch.Tensor,
+        kv_cache: PagedKVCache,
+        layer_idx: int,
+        slot_mapping: torch.Tensor,
+        block_table: list[int],
+        prefix_len: int,
+        context_len: int,
+        tile_size: int,
+    ) -> torch.Tensor:
+        if hidden_states.ndim != 3:
+            raise ValueError(
+                "hidden_states must have shape "
+                "[1, chunk_len, hidden_size], "
+                f"got {tuple(hidden_states.shape)}"
+            )
+        if hidden_states.shape[0] != 1:
+            raise ValueError(
+                "chunk prefill currently supports exactly one request, "
+                f"got batch_size={hidden_states.shape[0]}"
+            )
+        chunk_len = hidden_states.shape[1]
+        if chunk_len == 0:
+            raise ValueError("chunk_len must be greater than 0")
+        if hidden_states.shape[-1] != self.hidden_size:
+            raise ValueError(
+                "hidden_states last dimension must match hidden_size "
+                f"({self.hidden_size}), got {hidden_states.shape[-1]}"
+            )
+        if position_ids.shape != hidden_states.shape[:2]:
+            raise ValueError(
+                "position_ids shape must match hidden_states batch and "
+                f"chunk dimensions {tuple(hidden_states.shape[:2])}, "
+                f"got {tuple(position_ids.shape)}"
+            )
+        if position_ids.dtype not in (torch.int32, torch.int64):
+            raise TypeError("position_ids must use an integer dtype")
+        if slot_mapping.ndim != 1 or slot_mapping.shape[0] != chunk_len:
+            raise ValueError(
+                "slot_mapping must have shape [chunk_len], "
+                f"got {tuple(slot_mapping.shape)}"
+            )
+        if prefix_len < 0:
+            raise ValueError("prefix_len cannot be negative")
+        if context_len != prefix_len + chunk_len:
+            raise ValueError(
+                "context_len must equal prefix_len + chunk_len, "
+                f"got prefix_len={prefix_len}, chunk_len={chunk_len}, "
+                f"and context_len={context_len}"
+            )
+        if tile_size <= 0:
+            raise ValueError("tile_size must be greater than 0")
+
+        expected_positions = torch.arange(
+            prefix_len,
+            context_len,
+            dtype=position_ids.dtype,
+            device=position_ids.device,
+        ).unsqueeze(0)
+        if not torch.equal(position_ids, expected_positions):
+            raise ValueError(
+                "position_ids must contain the contiguous global positions "
+                "from prefix_len through context_len - 1"
+            )
+
+        required_blocks = (
+            context_len + kv_cache.block_size - 1
+        ) // kv_cache.block_size
+        if len(block_table) < required_blocks:
+            raise ValueError(
+                "block_table does not contain enough blocks for context_len"
+            )
+        used_blocks = block_table[:required_blocks]
+        if any(
+            physical_block < 0 or physical_block >= kv_cache.num_blocks
+            for physical_block in used_blocks
+        ):
+            raise ValueError(
+                "block_table contains an out-of-range physical block"
+            )
+
+        chunk_positions = torch.arange(
+            prefix_len,
+            context_len,
+            dtype=torch.long,
+            device=slot_mapping.device,
+        )
+        block_table_tensor = torch.as_tensor(
+            block_table,
+            dtype=torch.long,
+            device=slot_mapping.device,
+        )
+        expected_slots = (
+            block_table_tensor[chunk_positions // kv_cache.block_size]
+            * kv_cache.block_size
+            + chunk_positions % kv_cache.block_size
+        )
+        if not torch.equal(slot_mapping.to(torch.long), expected_slots):
+            raise ValueError(
+                "slot_mapping does not match block_table for the chunk positions"
+            )
+
+        query, key, value = self.qkv_proj(hidden_states)
+        cos, sin = self.rotary_embedding(
+            query,
+            position_ids,
+        )
+
+        query, key = apply_rotary_pos_emb(
+            query,
+            key,
+            cos,
+            sin,
+        )
+
+        kv_cache.write_slots(
+            slot_mapping=slot_mapping,
+            k=key.squeeze(0),
+            v=value.squeeze(0),
+            layer_idx=layer_idx,
+        )
+
+        layer_k_cache, layer_v_cache = kv_cache.get_layer_cache(
+            layer_idx
+        )
+        attention_output = paged_attention_prefill_chunk_tiled(
+            q=query.squeeze(0),
+            k_cache=layer_k_cache,
+            v_cache=layer_v_cache,
+            block_table=block_table,
+            prefix_len=prefix_len,
+            context_len=context_len,
+            block_size=kv_cache.block_size,
+            tile_size=tile_size,
+        )
+
+        attention_output = attention_output.reshape(
+            1,
+            chunk_len,
+            self.hidden_size,
+        )
+        return self.o_proj(attention_output)
 
 class Qwen2MLP(nn.Module):
     def __init__(self, config: TinyQwen2Config):
